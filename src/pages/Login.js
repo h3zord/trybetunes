@@ -4,17 +4,17 @@ import PropTypes from 'prop-types';
 
 class Login extends React.Component {
   render() {
-    const { loginInputValue, updateState, checkInputLength, buildUser,
+    const { userInfo, updateState, checkInputLength, buildUser,
       loadScreen, redirectSearch } = this.props;
     return (
       <div data-testid="page-login">
         <input
           data-testid="login-name-input"
           type="text"
-          value={ loginInputValue }
+          value={ userInfo }
           onChange={ updateState }
           id=""
-          name="loginInputValue"
+          name="name"
         />
         <button
           data-testid="login-submit-button"
@@ -43,7 +43,7 @@ class Login extends React.Component {
 }
 
 Login.propTypes = {
-  loginInputValue: PropTypes.string.isRequired,
+  userInfo: PropTypes.string.isRequired,
   updateState: PropTypes.func.isRequired,
   checkInputLength: PropTypes.bool.isRequired,
   buildUser: PropTypes.func.isRequired,

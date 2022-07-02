@@ -7,67 +7,13 @@ import NotFound from './pages/NotFound';
 import Profile from './pages/Profile';
 import ProfileEdit from './pages/ProfileEdit';
 import Search from './pages/Search';
-import { createUser } from './services/userAPI';
 
 class App extends React.Component {
-  constructor() {
-    super();
-
-    this.state = {
-      userInfo: {
-        name: '',
-      },
-      checkInputLength: true,
-      loadScreen: false,
-      redirectSearch: false,
-    };
-  }
-
-  updateState = ({ target }) => {
-    const { name } = target;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
-    this.setState({
-      userInfo: {
-        [name]: value,
-      },
-    }, () => { this.checkInputValueLength(); });
-  }
-
-  checkInputValueLength = () => {
-    const { userInfo: { name } } = this.state;
-    const minLength = 3;
-    if (name.length >= minLength) this.setState({ checkInputLength: false });
-    else this.setState({ checkInputLength: true });
-  }
-
-  buildUser = () => {
-    const { userInfo } = this.state;
-    this.setState({ loadScreen: true }, async () => {
-      await createUser(userInfo);
-      this.setState({ loadScreen: false, redirectSearch: true });
-    });
-  }
-
   render() {
-    const { userInfo: { name }, checkInputLength, loadScreen,
-      redirectSearch } = this.state;
-    const { updateState, buildUser } = this;
     return (
       <BrowserRouter>
         <Switch>
-          <Route
-            exact
-            path="/"
-            render={ (props) => (<Login
-              { ...props }
-              userInfo={ name }
-              updateState={ updateState }
-              checkInputLength={ checkInputLength }
-              buildUser={ buildUser }
-              loadScreen={ loadScreen }
-              redirectSearch={ redirectSearch }
-            />) }
-          />
+          <Route exact path="/" component={ Login } />
           <Route path="/search" component={ Search } />
           <Route path="/album/" render={ (props) => <Album { ...props } /> } />
           <Route path="/favorites" component={ Favorites } />

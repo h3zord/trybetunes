@@ -1,5 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Header from '../Components/Header';
+import Loading from '../Components/Loading';
+import searchAlbumsAPI from '../services/searchAlbumsAPI';
 
 class Search extends React.Component {
   constructor() {
@@ -8,6 +11,11 @@ class Search extends React.Component {
     this.state = {
       search: '',
       checkInputLength: true,
+      loadScreen: false,
+      artist: '',
+      showArtist: false,
+      findAlbum: false,
+      albumList: [],
     };
   }
 
@@ -26,12 +34,46 @@ class Search extends React.Component {
     else this.setState({ checkInputLength: true });
   }
 
+  searchMusic = () => {
+    const { search } = this.state;
+    this.setState({ artist: search });
+    this.setState({ loadScreen: true }, async () => {
+      const promisse = await searchAlbumsAPI(search);
+      this.setState({
+        search: '',
+        loadScreen: false,
+        showArtist: true,
+        checkInputLength: true,
+        albumList: [...promisse],
+      });
+      if (promisse.length > 0) this.setState({ findAlbum: true });
+      else this.setState({ findAlbum: false });
+    });
+  }
+
   render() {
-    const { checkInputLength, search } = this.state;
-    const { updateState } = this;
+    const {
+      checkInputLength,
+      search,
+      loadScreen,
+      artist,
+      showArtist,
+      findAlbum,
+      albumList } = this.state;
+
+    const { updateState, searchMusic } = this;
+
+    const result = findAlbum
+      ? <p>{`Resultado de álbuns de: ${artist}`}</p>
+      : <p>Nenhum álbum foi encontrado</p>;
+
+    if (loadScreen) return <Loading />;
+
     return (
       <div data-testid="page-search">
+
         <Header />
+
         <input
           type="search"
           data-testid="search-artist-input"
@@ -44,9 +86,32 @@ class Search extends React.Component {
           data-testid="search-artist-button"
           type="button"
           disabled={ checkInputLength }
+          onClick={ searchMusic }
         >
           Pesquisar
         </button>
+
+        {
+          showArtist
+            ? result
+            : null
+        }
+
+        {
+          albumList
+            .map(({ artworkUrl100, collectionName, artistName, collectionId }) => (
+              <div className="album-container" key={ collectionId }>
+                <img src={ artworkUrl100 } alt="capa do album" />
+                <p>{ `Artista: ${artistName}` }</p>
+                <Link
+                  to={ `/album/${collectionId}` }
+                  data-testid={ `link-to-album-${collectionId}` }
+                >
+                  { `Album: ${collectionName}` }
+                </Link>
+              </div>
+            ))
+        }
 
       </div>
     );

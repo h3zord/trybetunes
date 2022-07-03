@@ -46,6 +46,9 @@ class Login extends React.Component {
     const { userInfo: { name }, checkInputLength, loadScreen,
       redirectSearch } = this.state;
     const { updateState, buildUser } = this;
+
+    if (loadScreen) return <Loading />;
+
     return (
       <div data-testid="page-login">
         <input
@@ -66,11 +69,6 @@ class Login extends React.Component {
         >
           Entrar
         </button>
-
-        {
-          loadScreen
-            && <Loading />
-        }
 
         {
           redirectSearch

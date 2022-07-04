@@ -38,15 +38,15 @@ class Search extends React.Component {
     const { search } = this.state;
     this.setState({ artist: search });
     this.setState({ loadScreen: true }, async () => {
-      const promisse = await searchAlbumsAPI(search);
+      const result = await searchAlbumsAPI(search);
       this.setState({
         search: '',
         loadScreen: false,
         showArtist: true,
         checkInputLength: true,
-        albumList: [...promisse],
+        albumList: [...result],
       });
-      if (promisse.length > 0) this.setState({ findAlbum: true });
+      if (result.length > 0) this.setState({ findAlbum: true });
       else this.setState({ findAlbum: false });
     });
   }

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { addSong } from '../services/favoriteSongsAPI';
+import { addSong, getFavoriteSongs, removeSong } from '../services/favoriteSongsAPI';
 import Loading from './Loading';
 
 class MusicCard extends React.Component {
@@ -10,38 +10,59 @@ class MusicCard extends React.Component {
     this.state = {
       favorite: false,
       loadScreen: false,
+      trackListFavorite: [],
     };
   }
 
   componentDidMount() {
-    this.getFavorite();
+    this.getFavoriteList();
   }
 
-  getFavorite = () => {
-    const { track: { trackId }, trackListFavorite } = this.props;
+  getFavoriteList = () => {
+    this.setState({ loadScreen: true }, async () => {
+      const result = await getFavoriteSongs();
+      this.setState({ loadScreen: false, trackListFavorite: [...result] },
+        () => {
+          const { trackListFavorite } = this.state;
+          this.getFavorite(trackListFavorite);
+        });
+    });
+  }
+
+  getFavorite = (trackListFavorite) => {
+    const { track: { trackId } } = this.props;
     const trackFind = trackListFavorite.some((obj) => obj.trackId === trackId);
     this.setState({ favorite: trackFind });
     console.log(trackListFavorite);
   }
 
-  addFavorite = () => {
-    const { favorite } = this.state;
-    const { track } = this.props;
+  addRemoveFavorite = () => {
     this.setState((prevState) => ({ favorite: !prevState.favorite }), () => {
-      if (!favorite) this.handleCheck(track);
+      const { favorite } = this.state;
+      const { track } = this.props;
+      if (favorite) this.addFavorite(track);
+      if (!favorite) this.removeFavorite(track);
     });
   }
 
-  handleCheck = (track) => {
+  addFavorite = (track) => {
     this.setState({ loadScreen: true }, async () => {
       await addSong(track);
-      this.setState({ loadScreen: false });
+      const result = await getFavoriteSongs();
+      this.setState({ loadScreen: false, trackListFavorite: [...result] });
+    });
+  }
+
+  removeFavorite = (track) => {
+    this.setState({ loadScreen: true }, async () => {
+      await removeSong(track);
+      this.setState({ loadScreen: false, favorite: false });
     });
   }
 
   render() {
     const { track: { trackName, previewUrl, trackId } } = this.props;
-    const { addFavorite } = this;
+    const { addRemoveFavorite } = this;
     const { loadScreen, favorite } = this.state;
 
     if (loadScreen) return <Loading />;
@@ -68,7 +89,7 @@ class MusicCard extends React.Component {
           <input
             type="checkbox"
             id={ trackId }
-            onChange={ addFavorite }
+            onChange={ addRemoveFavorite }
             name=""
             checked={ favorite }
           />
@@ -83,7 +104,6 @@ MusicCard.propTypes = {
     trackId: PropTypes.number.isRequired,
     previewUrl: PropTypes.string.isRequired,
   }),
-  trackListFavorite: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 MusicCard.defaultProps = {

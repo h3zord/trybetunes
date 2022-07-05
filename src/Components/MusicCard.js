@@ -13,6 +13,17 @@ class MusicCard extends React.Component {
     };
   }
 
+  componentDidMount() {
+    this.getFavorite();
+  }
+
+  getFavorite = () => {
+    const { track: { trackId }, trackListFavorite } = this.props;
+    const trackFind = trackListFavorite.some((obj) => obj.trackId === trackId);
+    this.setState({ favorite: trackFind });
+    console.log(trackListFavorite);
+  }
+
   addFavorite = () => {
     const { favorite } = this.state;
     const { track } = this.props;
@@ -72,6 +83,7 @@ MusicCard.propTypes = {
     trackId: PropTypes.number.isRequired,
     previewUrl: PropTypes.string.isRequired,
   }),
+  trackListFavorite: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 MusicCard.defaultProps = {

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Header from '../Components/Header';
 import MusicCard from '../Components/MusicCard';
 import getMusics from '../services/musicsAPI';
+import Loading from '../Components/Loading';
 
 class Album extends React.Component {
   constructor() {
@@ -15,6 +16,7 @@ class Album extends React.Component {
         imgAlbum: '',
       },
       trackList: [],
+      loadScreen: false,
     };
   }
 
@@ -25,18 +27,25 @@ class Album extends React.Component {
   findMusic = async () => {
     const { match: { params: { id } } } = this.props;
     const result = await getMusics(id);
+    // console.log(result);
     this.setState({
       infoMusic: {
         artist: result[0].artistName,
         collection: result[0].collectionName,
         imgAlbum: result[0].artworkUrl100,
       },
-      trackList: result.filter((_el, index) => index > 0),
+      trackList: result.filter((_element, index) => index > 0),
     });
   }
 
   render() {
-    const { infoMusic: { artist, collection, imgAlbum }, trackList } = this.state;
+    const {
+      infoMusic: { artist, collection, imgAlbum },
+      trackList,
+      loadScreen,
+    } = this.state;
+
+    if (loadScreen) return <Loading />;
 
     return (
       <div data-testid="page-album">
@@ -47,13 +56,12 @@ class Album extends React.Component {
           <p data-testid="album-name">{ collection }</p>
         </div>
         {
-          trackList.map(({ trackName, previewUrl }) => (
-            <div key={ trackName }>
-              <MusicCard trackName={ trackName } previewUrl={ previewUrl } />
+          trackList.map((obj) => (
+            <div key={ obj.trackId }>
+              <MusicCard track={ obj } />
             </div>
           ))
         }
-
       </div>
     );
   }

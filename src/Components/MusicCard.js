@@ -33,7 +33,6 @@ class MusicCard extends React.Component {
     const { track: { trackId } } = this.props;
     const trackFind = trackListFavorite.some((obj) => obj.trackId === trackId);
     this.setState({ favorite: trackFind });
-    console.log(trackListFavorite);
   }
 
   addRemoveFavorite = () => {
@@ -90,7 +89,6 @@ class MusicCard extends React.Component {
             type="checkbox"
             id={ trackId }
             onChange={ addRemoveFavorite }
-            name=""
             checked={ favorite }
           />
         </label>

@@ -35,8 +35,9 @@ class Header extends React.Component {
     const { loadScreen, userInfo: { name }, welcomeMsg } = this.state;
     const message = (
       <p data-testid="header-user-name">
+        <span>Welcome </span>
         {
-          `Welcome ${name}`
+          name
         }
       </p>
     );

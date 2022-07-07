@@ -43,8 +43,9 @@ class Login extends React.Component {
   }
 
   render() {
-    const { userInfo: { name }, checkInputLength, loadScreen,
-      redirectSearch } = this.state;
+    const {
+      userInfo: { name }, checkInputLength, loadScreen, redirectSearch,
+    } = this.state;
     const { updateState, buildUser } = this;
 
     if (loadScreen) return <Loading />;

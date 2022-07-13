@@ -50,7 +50,9 @@ class MusicCard extends React.Component {
       const result = await getFavoriteSongs();
       this.setState({ loadScreen: false, trackListFavorite: [...result] });
       const { updateList } = this.props;
-      updateList();
+      if (updateList) {
+        updateList();
+      }
     });
   }
 
@@ -59,7 +61,9 @@ class MusicCard extends React.Component {
       await removeSong(track);
       this.setState({ loadScreen: false, favorite: false });
       const { updateList } = this.props;
-      updateList();
+      if (updateList) {
+        updateList();
+      }
     });
   }
 
@@ -67,7 +71,6 @@ class MusicCard extends React.Component {
     const { track: { trackName, previewUrl, trackId } } = this.props;
     const { addRemoveFavorite } = this;
     const { loadScreen, favorite } = this.state;
-    console.log(typeof trackId);
 
     if (loadScreen) return <Loading />;
     return (

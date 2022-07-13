@@ -50,9 +50,7 @@ class MusicCard extends React.Component {
       const result = await getFavoriteSongs();
       this.setState({ loadScreen: false, trackListFavorite: [...result] });
       const { updateList } = this.props;
-      if (updateList) {
-        updateList();
-      }
+      updateList();
     });
   }
 
@@ -61,9 +59,7 @@ class MusicCard extends React.Component {
       await removeSong(track);
       this.setState({ loadScreen: false, favorite: false });
       const { updateList } = this.props;
-      if (updateList) {
-        updateList();
-      }
+      updateList();
     });
   }
 
@@ -110,7 +106,11 @@ MusicCard.propTypes = {
     trackId: PropTypes.node.isRequired,
     previewUrl: PropTypes.string.isRequired,
   }).isRequired,
-  updateList: PropTypes.func.isRequired,
+  updateList: PropTypes.func,
+};
+
+MusicCard.defaultProps = {
+  updateList: () => {},
 };
 
 export default MusicCard;

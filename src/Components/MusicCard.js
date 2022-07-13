@@ -49,6 +49,8 @@ class MusicCard extends React.Component {
       await addSong(track);
       const result = await getFavoriteSongs();
       this.setState({ loadScreen: false, trackListFavorite: [...result] });
+      const { updateList } = this.props;
+      updateList();
     });
   }
 
@@ -56,6 +58,8 @@ class MusicCard extends React.Component {
     this.setState({ loadScreen: true }, async () => {
       await removeSong(track);
       this.setState({ loadScreen: false, favorite: false });
+      const { updateList } = this.props;
+      updateList();
     });
   }
 
@@ -63,6 +67,7 @@ class MusicCard extends React.Component {
     const { track: { trackName, previewUrl, trackId } } = this.props;
     const { addRemoveFavorite } = this;
     const { loadScreen, favorite } = this.state;
+    console.log(typeof trackId);
 
     if (loadScreen) return <Loading />;
     return (
@@ -99,17 +104,10 @@ class MusicCard extends React.Component {
 MusicCard.propTypes = {
   track: PropTypes.shape({
     trackName: PropTypes.string.isRequired,
-    trackId: PropTypes.number.isRequired,
+    trackId: PropTypes.node.isRequired,
     previewUrl: PropTypes.string.isRequired,
-  }),
-};
-
-MusicCard.defaultProps = {
-  track: PropTypes.shape({
-    trackName: '',
-    trackId: 0,
-    previewUrl: '',
-  }),
+  }).isRequired,
+  updateList: PropTypes.func.isRequired,
 };
 
 export default MusicCard;

@@ -30,7 +30,7 @@ class Profile extends React.Component {
       <div data-testid="page-profile">
         <Header />
         <img src={ image } alt="foto do usuario" data-testid="profile-image" />
-        <span>{ name }</span>
+        <p>{ name }</p>
         <p>{ email }</p>
         <p>{ description }</p>
         <Link to="/profile/edit">Editar perfil</Link>

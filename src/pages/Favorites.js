@@ -18,6 +18,10 @@ class Favorites extends React.Component {
     this.getFavoriteList();
   }
 
+  updateList = () => {
+    this.getFavoriteList();
+  }
+
   getFavoriteList = () => {
     this.setState({ loadScreen: true }, async () => {
       const result = await getFavoriteSongs();
@@ -37,6 +41,7 @@ class Favorites extends React.Component {
             <div key={ obj.trackId }>
               <MusicCard
                 track={ obj }
+                updateList={ this.updateList }
               />
             </div>
           ))

@@ -1,7 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { addSong, getFavoriteSongs, removeSong } from '../services/favoriteSongsAPI';
-import Loading from './Loading';
+// import Loading from './Loading';
+import './musicCard.css';
+import favoriteIcon from '../images/favorite.svg';
+import unFavoriteIcon from '../images/unfavorite.svg';
 
 class MusicCard extends React.Component {
   constructor() {
@@ -66,12 +69,15 @@ class MusicCard extends React.Component {
   render() {
     const { track: { trackName, previewUrl, trackId } } = this.props;
     const { addRemoveFavorite } = this;
+    // eslint-disable-next-line no-unused-vars
     const { loadScreen, favorite } = this.state;
 
-    if (loadScreen) return <Loading />;
+    // if (loadScreen) return <Loading />;
     return (
       <>
-        <p>{ trackName }</p>
+        <div>
+          <p className="music-name">{ trackName }</p>
+        </div>
         <audio
           data-testid="audio-component"
           src={ previewUrl }
@@ -84,7 +90,7 @@ class MusicCard extends React.Component {
           .
         </audio>
 
-        <label
+        {/* <label
           data-testid={ `checkbox-music-${trackId}` }
           htmlFor={ trackId }
         >
@@ -95,7 +101,19 @@ class MusicCard extends React.Component {
             onChange={ addRemoveFavorite }
             checked={ favorite }
           />
-        </label>
+        </label> */}
+        <button
+          type="button"
+          onClick={ addRemoveFavorite }
+          id={ trackId }
+          className="favorite-button"
+        >
+          {
+            favorite
+              ? <img src={ favoriteIcon } alt="favorite-icon" />
+              : <img src={ unFavoriteIcon } alt="unfavorite-icon" />
+          }
+        </button>
       </>
     );
   }

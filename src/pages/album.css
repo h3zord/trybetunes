@@ -1,0 +1,59 @@
+.page-album {
+  align-items: flex-start;
+  display: flex;
+  justify-content: center;
+}
+
+.main-page {
+  height: 100%;
+  width: 80vw;
+}
+
+.main-content {
+  align-items: flex-start;
+  background-color: #e6e8ea;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+}
+
+.album-info {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  font-family: Epilogue , sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  height: 80vh;
+  justify-content: flex-start;
+  text-align: center;
+  width: 30%;
+}
+
+.album-info img {
+  border-radius: 12px;
+  filter: drop-shadow(-9px 8px 8px rgba(68, 73, 85, 0.2));
+  height: 240px;
+  margin-bottom: 25px;
+  margin-top: 30px;
+  width: 240px;
+}
+
+.music-info {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  font-family: Epilogue , sans-serif;
+  height: 100%;
+  justify-content: center;
+  width: 70%;
+}
+
+.music {
+  align-items: center;
+  border-bottom: 2px solid #ccd4e1;
+  display: flex;
+  justify-content: space-between;
+  padding: 25px;
+  width: 90%;
+}

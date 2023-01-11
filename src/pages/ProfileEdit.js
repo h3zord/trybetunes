@@ -1,7 +1,10 @@
+/* eslint-disable react/jsx-max-depth */
 import React from 'react';
 import PropTypes from 'prop-types';
 import Header from '../Components/Header';
 import { getUser, updateUser } from '../services/userAPI';
+import profile2 from '../images/profile2.png';
+import './profileEdit.css';
 
 class ProfileEdit extends React.Component {
   constructor() {
@@ -73,47 +76,65 @@ class ProfileEdit extends React.Component {
     } = this.state;
 
     return (
-      <div data-testid="page-profile-edit">
+      <div className="page-profile-edit">
         <Header />
-        <input
-          data-testid="edit-input-name"
-          type="text"
-          name="inputName"
-          placeholder="Digite seu nome"
-          value={ inputName }
-          onChange={ this.updateState }
-        />
-        <input
-          data-testid="edit-input-email"
-          type="email"
-          name="inputEmail"
-          placeholder="Digite seu email"
-          value={ inputEmail }
-          onChange={ this.updateState }
-        />
-        <textarea
-          data-testid="edit-input-description"
-          name="inputDescription"
-          placeholder="Descreva aqui"
-          value={ inputDescription }
-          onChange={ this.updateState }
-        />
-        <input
-          data-testid="edit-input-image"
-          type="text"
-          name="inputImage"
-          placeholder="Digite um link"
-          value={ inputImage }
-          onChange={ this.updateState }
-        />
-        <button
-          data-testid="edit-button-save"
-          type="button"
-          disabled={ !this.checkLenght() }
-          onClick={ this.updateUserInfo }
-        >
-          Salvar
-        </button>
+        <div className="edit-content">
+          <div className="title">Editar Perfil</div>
+          <div className="info-profile-container">
+            <div className="img-perfil">
+              <img src={ inputImage || profile2 } alt="foto do usuario" />
+
+              <input
+                data-testid="edit-input-image"
+                type="text"
+                name="inputImage"
+                placeholder="Insira um link"
+                value={ inputImage }
+                onChange={ this.updateState }
+              />
+            </div>
+            <div className="edit-inputs">
+              <p>Nome</p>
+              <span>Fique a vontade para usar seu nome social</span>
+              <input
+                data-testid="edit-input-name"
+                type="text"
+                name="inputName"
+                placeholder="Digite seu nome"
+                value={ inputName }
+                onChange={ this.updateState }
+              />
+              <p>E-mail</p>
+              <span>Escolha um e-mail que consulte diariamente</span>
+              <input
+                data-testid="edit-input-email"
+                type="email"
+                name="inputEmail"
+                placeholder="Digite seu email"
+                value={ inputEmail }
+                onChange={ this.updateState }
+              />
+              <p>Descrição</p>
+              <textarea
+                data-testid="edit-input-description"
+                name="inputDescription"
+                placeholder="Sobre mim"
+                value={ inputDescription }
+                onChange={ this.updateState }
+              />
+              <div className="save-button">
+                <button
+                  data-testid="edit-button-save"
+                  type="button"
+                  disabled={ !this.checkLenght() }
+                  onClick={ this.updateUserInfo }
+                >
+                  Salvar
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }

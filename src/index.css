@@ -5,6 +5,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  height: 100vh;
+  width: 100vw;
 }
 
 code {
@@ -17,3 +19,5 @@ code {
   display: flex;
   justify-content: center;
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Epilogue:wght@400;700&display=swap');

@@ -1,0 +1,53 @@
+.header-component {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+  width: 20vw;
+}
+
+.header-logo {
+  align-items: center;
+  display: flex;
+  height: 25%;
+  justify-content: center;
+  width: 100%;
+}
+
+.header-logo img {
+  width: 70%;
+}
+
+.header-links {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  font-family: Epilogue , sans-serif;
+  height: 50%;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.header-name {
+  align-items: center;
+  display: flex;
+  height: 25%;
+  justify-content: center;
+  width: 100%;
+}
+
+.profile-container {
+  align-items: center;
+  color: #444955;
+  display: flex;
+  flex-direction: column;
+  font-family: Epilogue , sans-serif;
+  font-weight: 700;
+  justify-content: center;
+}
+
+.profile-container img {
+  padding: 15px;
+  width: 85px;
+}

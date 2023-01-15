@@ -2,6 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { getUser } from '../services/userAPI';
 import Loading from './Loading';
+import './header.css';
+import logo from '../images/logo.svg';
+import search from '../images/search.svg';
+import star from '../images/star.svg';
+import profile from '../images/profile.svg';
+import profile2 from '../images/profile2.png';
 
 class Header extends React.Component {
   constructor() {
@@ -12,6 +18,7 @@ class Header extends React.Component {
       welcomeMsg: false,
       userInfo: {
         name: '',
+        image: '',
       },
     };
   }
@@ -26,37 +33,57 @@ class Header extends React.Component {
       this.setState({
         loadScreen: false,
         welcomeMsg: true,
-        userInfo: { name: promisse.name },
+        userInfo: { name: promisse.name, image: promisse.image },
       });
     });
   }
 
   render() {
-    const { loadScreen, userInfo: { name }, welcomeMsg } = this.state;
+    // eslint-disable-next-line no-unused-vars
+    const { loadScreen, userInfo: { name, image }, welcomeMsg } = this.state;
     const message = (
-      <p data-testid="header-user-name">
-        <span>Welcome </span>
-        {
-          name
-        }
-      </p>
+      <div className="profile-container">
+        <img src={ image || profile2 } alt="icon-profile" />
+        <span>{ name }</span>
+      </div>
     );
     return (
-      <header data-testid="header-component">
-        {
+      <div className="header-component">
+
+        {/* {
           loadScreen
           && <Loading />
-        }
+        } */}
 
-        {
-          welcomeMsg
-          && message
-        }
+        <div className="header-logo">
+          <img src={ logo } alt="logo-img" />
+        </div>
 
-        <Link to="/search" data-testid="link-to-search"> Search </Link>
-        <Link to="/favorites" data-testid="link-to-favorites"> Favorites </Link>
-        <Link to="/profile" data-testid="link-to-profile"> Profile </Link>
-      </header>
+        <div className="header-links">
+          <Link to="/search" className="links">
+            <img src={ search } alt="search-img" />
+          </Link>
+
+          <Link to="/favorites" className="links">
+            <img src={ star } alt="star-img" />
+          </Link>
+          <Link to="/profile" className="links">
+            <img src={ profile } alt="profile-img" />
+          </Link>
+        </div>
+
+        <div className="header-name">
+          {
+            loadScreen && <Loading />
+          }
+
+          {
+            welcomeMsg
+            && message
+          }
+        </div>
+
+      </div>
     );
   }
 }

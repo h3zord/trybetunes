@@ -1,8 +1,9 @@
 import React from 'react';
 import Header from '../Components/Header';
-import Loading from '../Components/Loading';
+// import Loading from '../Components/Loading';
 import MusicCard from '../Components/MusicCard';
 import { getFavoriteSongs } from '../services/favoriteSongsAPI';
+import './favorites.css';
 
 class Favorites extends React.Component {
   constructor() {
@@ -30,22 +31,28 @@ class Favorites extends React.Component {
   }
 
   render() {
+    // eslint-disable-next-line no-unused-vars
     const { loadScreen, trackListFavorite } = this.state;
-    if (loadScreen) return <Loading />;
+    // if (loadScreen) return <Loading />;
 
     return (
-      <div data-testid="page-favorites">
+      <div className="page-favorites">
         <Header />
-        {
-          trackListFavorite.map((obj) => (
-            <div key={ obj.trackId }>
-              <MusicCard
-                track={ obj }
-                updateList={ this.updateList }
-              />
-            </div>
-          ))
-        }
+        <div className="favorite-container">
+          <div className="title">Músicas Favoritas</div>
+          <div className="favorite-musics">
+            {
+              trackListFavorite.map((obj) => (
+                <div key={ obj.trackId } className="music2">
+                  <MusicCard
+                    track={ obj }
+                    updateList={ this.updateList }
+                  />
+                </div>
+              ))
+            }
+          </div>
+        </div>
       </div>
     );
   }

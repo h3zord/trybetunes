@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import Header from '../Components/Header';
 import MusicCard from '../Components/MusicCard';
 import getMusics from '../services/musicsAPI';
-import Loading from '../Components/Loading';
+// import Loading from '../Components/Loading';
+import './album.css';
 
 class Album extends React.Component {
   constructor() {
@@ -41,28 +42,37 @@ class Album extends React.Component {
     const {
       infoMusic: { artist, collection, imgAlbum },
       trackList,
+      // eslint-disable-next-line no-unused-vars
       loadScreen,
     } = this.state;
 
-    if (loadScreen) return <Loading />;
+    // if (loadScreen) return <Loading />;
 
     return (
-      <div data-testid="page-album">
+      <div className="page-album">
         <Header />
-        <div>
-          <img src={ imgAlbum } alt="imagem do album" />
-          <p data-testid="artist-name">{ artist }</p>
-          <p data-testid="album-name">{ collection }</p>
-        </div>
-        {
-          trackList.map((obj) => (
-            <div key={ obj.trackId }>
-              <MusicCard
-                track={ obj }
-              />
+        <div className="main-page">
+          <div className="title">Músicas</div>
+          <div className="main-content">
+            <div className="album-info">
+              <img src={ imgAlbum } alt="imagem do album" />
+              <p data-testid="artist-name">{ artist }</p>
+              <p data-testid="album-name">{ collection }</p>
             </div>
-          ))
-        }
+            <div className="music-info">
+              {
+                trackList.map((obj) => (
+                  <div key={ obj.trackId } className="music">
+                    <MusicCard
+                      track={ obj }
+                    />
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+
+        </div>
       </div>
     );
   }

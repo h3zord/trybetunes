@@ -1,0 +1,14 @@
+.music-name {
+  text-align: center;
+  width: 200px;
+}
+
+.favorite-button {
+  background-color: #e6e8ea;
+  border: none;
+  cursor: pointer;
+}
+
+.favorite-button img {
+  width: 35px;
+}

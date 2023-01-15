@@ -1,0 +1,122 @@
+.page-search {
+  align-items: flex-start;
+  display: flex;
+  justify-content: center;
+}
+
+.search-container {
+  align-items: center;
+  background: linear-gradient(123.66deg, #003be5 12.08%, #00d5e2 86.52%);
+  display: flex;
+  height: 20vh;
+  justify-content: center;
+  width: 100%;
+}
+
+.search-container input {
+  background-color: #ffffff80;
+  border: none;
+  border-radius: 23px;
+  padding: 10px;
+  width: 30%;
+}
+
+.search-container input::placeholder {
+  color: white;
+  font-family: Epilogue , sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 10px;
+}
+
+.search-container img {
+  position: relative;
+  right: 45px;
+}
+
+.search-container button {
+  background-color: #00d5e2;
+  border: none;
+  border-radius: 23px;
+  color: white;
+  cursor: pointer;
+  font-family: Epilogue , sans-serif;
+  font-weight: 700;
+  padding: 10px;
+  width: 120px;
+}
+
+.main-container {
+  height: 100%;
+  width: 80vw;
+}
+
+.music-container {
+  align-items: center;
+  background-color: #eff3f9;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  width: 100%;
+}
+
+.error-msg {
+  align-items: center;
+  color: #c0c3c9;
+  display: flex;
+  flex-direction: column;
+  font-family: Epilogue , sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+  height: 59vh;
+  justify-content: center;
+  margin-top: 200px;
+}
+
+.result-msg {
+  align-items: center;
+  color: #003be5;
+  display: flex;
+  font-family: Epilogue , sans-serif;
+  font-size: 20px;
+  font-style: italic;
+  font-weight: 400;
+  height: 15vh;
+  justify-content: center;
+  width: 100%;
+}
+
+.music-content {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  height: 90%;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.album-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  font-family: Epilogue , sans-serif;
+  font-weight: 700;
+  height: 260px;
+  justify-content: space-around;
+  margin-bottom: 30px;
+  text-align: center;
+  width: 300px;
+}
+
+.album-container img {
+  border-radius: 10px;
+  height: 180px;
+  margin-bottom: 10px;
+  width: 180px;
+}
+
+.album-container p {
+  color: #3d495c;
+  font-size: 12px;
+}

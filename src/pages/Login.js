@@ -1,7 +1,9 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { createUser } from '../services/userAPI';
-import Loading from '../Components/Loading';
+// import Loading from '../Components/Loading';
+import './login.css';
+import logo from '../images/logo.svg';
 
 class Login extends React.Component {
   constructor() {
@@ -44,38 +46,46 @@ class Login extends React.Component {
 
   render() {
     const {
+      // eslint-disable-next-line no-unused-vars
       userInfo: { name }, checkInputLength, loadScreen, redirectSearch,
     } = this.state;
     const { updateState, buildUser } = this;
 
-    if (loadScreen) return <Loading />;
+    // if (loadScreen) return <Loading />;
 
     return (
-      <div data-testid="page-login">
-        <input
-          data-testid="login-name-input"
-          type="text"
-          value={ name }
-          onChange={ updateState }
-          id=""
-          name="name"
-        />
-        <button
-          data-testid="login-submit-button"
-          type="button"
-          disabled={ checkInputLength }
-          onClick={ buildUser }
-          id=""
-          name=""
-        >
-          Entrar
-        </button>
+      <div data-testid="page-login" className="page-login">
+        <div className="login-container">
+          <div className="logo-container">
+            <img src={ logo } alt="logo-img" />
+          </div>
+          <div className="form-container">
+            <input
+              data-testid="login-name-input"
+              type="text"
+              value={ name }
+              onChange={ updateState }
+              className="input-name"
+              name="name"
+              placeholder="Qual é o seu nome?"
+            />
+            <button
+              data-testid="login-submit-button"
+              type="button"
+              disabled={ checkInputLength }
+              onClick={ buildUser }
+              id=""
+              name=""
+            >
+              ENTRAR
+            </button>
 
-        {
-          redirectSearch
-            && <Redirect to="/search" />
-        }
-
+            {
+              redirectSearch
+                && <Redirect to="/search" />
+            }
+          </div>
+        </div>
       </div>
     );
   }

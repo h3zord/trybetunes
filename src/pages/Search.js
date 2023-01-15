@@ -1,8 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../Components/Header';
-import Loading from '../Components/Loading';
+// import Loading from '../Components/Loading';
 import searchAlbumsAPI from '../services/searchAlbumsAPI';
+import './search.css';
+import lupa from '../images/lupa.svg';
+import error from '../images/error.svg';
 
 class Search extends React.Component {
   constructor() {
@@ -55,6 +58,7 @@ class Search extends React.Component {
     const {
       checkInputLength,
       search,
+      // eslint-disable-next-line no-unused-vars
       loadScreen,
       artist,
       showArtist,
@@ -64,55 +68,66 @@ class Search extends React.Component {
     const { updateState, searchMusic } = this;
 
     const result = findAlbum
-      ? <p>{`Resultado de álbuns de: ${artist}`}</p>
-      : <p>Nenhum álbum foi encontrado</p>;
+      ? <div className="result-msg"><p>{`Resultado de álbuns de: ${artist}`}</p></div>
+      : (
+        <div className="error-msg">
+          <img src={ error } alt="error-img" />
+          <p>Nenhum álbum foi encontrado</p>
+        </div>);
 
-    if (loadScreen) return <Loading />;
+    // if (loadScreen) return <Loading />;
 
     return (
-      <div data-testid="page-search">
+      <div className="page-search">
 
         <Header />
+        <div className="main-container">
+          <div className="search-container">
+            <input
+              type="search"
+              data-testid="search-artist-input"
+              placeholder="DIGITE A SUA PESQUISA"
+              onChange={ updateState }
+              name="search"
+              value={ search }
+            />
+            <img src={ lupa } alt="lupa-img" />
+            <button
+              data-testid="search-artist-button"
+              type="button"
+              disabled={ checkInputLength }
+              onClick={ searchMusic }
+            >
+              PROCURAR
+            </button>
+          </div>
+          <div className="music-container">
+            {
+              showArtist
+                ? result
+                : null
+            }
 
-        <input
-          type="search"
-          data-testid="search-artist-input"
-          placeholder="Digite aqui"
-          onChange={ updateState }
-          name="search"
-          value={ search }
-        />
-        <button
-          data-testid="search-artist-button"
-          type="button"
-          disabled={ checkInputLength }
-          onClick={ searchMusic }
-        >
-          Pesquisar
-        </button>
+            <div className="music-content">
+              {
+                albumList
+                  .map(({ artworkUrl100, collectionName, artistName, collectionId }) => (
+                    <div className="album-container" key={ collectionId }>
+                      <Link
+                        to={ `/album/${collectionId}` }
+                        data-testid={ `link-to-album-${collectionId}` }
+                      >
+                        <img src={ artworkUrl100 } alt="capa do album" />
+                      </Link>
+                      { `Album: ${collectionName}` }
+                      <p>{ `Artista: ${artistName}` }</p>
+                    </div>
+                  ))
+              }
+            </div>
 
-        {
-          showArtist
-            ? result
-            : null
-        }
-
-        {
-          albumList
-            .map(({ artworkUrl100, collectionName, artistName, collectionId }) => (
-              <div className="album-container" key={ collectionId }>
-                <img src={ artworkUrl100 } alt="capa do album" />
-                <p>{ `Artista: ${artistName}` }</p>
-                <Link
-                  to={ `/album/${collectionId}` }
-                  data-testid={ `link-to-album-${collectionId}` }
-                >
-                  { `Album: ${collectionName}` }
-                </Link>
-              </div>
-            ))
-        }
-
+          </div>
+        </div>
       </div>
     );
   }

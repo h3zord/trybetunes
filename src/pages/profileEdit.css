@@ -1,0 +1,84 @@
+.page-profile-edit {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+}
+
+.info-profile-container {
+  background-color: #eff3f9;
+  display: flex;
+  height: 83vh;
+  width: 80vw;
+}
+
+.edit-content {
+  height: 100vh;
+  width: 60%;
+}
+
+.edit-inputs {
+  display: flex;
+  flex-direction: column;
+  font-family: Epilogue , sans-serif;
+  height: 80vh;
+  padding: 10px;
+  width: 45%;
+}
+
+.edit-inputs p {
+  font-weight: 700;
+  margin-bottom: 25px;
+}
+
+.edit-inputs span {
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+
+.edit-inputs input {
+  background-color: #eff3f9;
+  border: none;
+  border-bottom: 1px solid #3d495c;
+  padding: 8px;
+  width: 50%;
+}
+
+.edit-inputs textarea {
+  border: none;
+  border-bottom: 1px solid #3d495c;
+  height: 100px;
+  margin-bottom: 30px;
+  padding: 5px;
+  width: 75%;
+}
+
+.save-button {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.edit-inputs button {
+  background-color: #003be5;
+  border: none;
+  border-radius: 100px;
+  color: white;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 700;
+  padding: 15px;
+  width: 130px;
+}
+
+.edit-inputs button:disabled {
+  background-color: #003be5;
+  border: none;
+  border-radius: 100px;
+  color: white;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 700;
+  opacity: 0.3;
+  padding: 15px;
+  width: 130px;
+}

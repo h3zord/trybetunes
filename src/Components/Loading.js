@@ -1,9 +1,19 @@
 import React from 'react';
+import './loading.css';
 
 class Loading extends React.Component {
   render() {
     return (
-      <p>Carregando...</p>
+      <div className="middle">
+        <div className="bar bar1" />
+        <div className="bar bar2" />
+        <div className="bar bar3" />
+        <div className="bar bar4" />
+        <div className="bar bar5" />
+        <div className="bar bar6" />
+        <div className="bar bar7" />
+        <div className="bar bar8" />
+      </div>
     );
   }
 }

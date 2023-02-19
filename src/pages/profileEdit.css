@@ -25,6 +25,10 @@
   width: 45%;
 }
 
+.img-perfil img {
+  border-radius: 20%;
+}
+
 .edit-inputs p {
   font-weight: 700;
   margin-bottom: 25px;

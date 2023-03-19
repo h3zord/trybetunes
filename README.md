@@ -25,7 +25,10 @@ https://user-images.githubusercontent.com/102384026/226147662-1a152975-c7a9-4a90
 
 ## O que foi desenvolvido?
 
-O projeto <strong>TrybeTunes</strong> é uma aplicação desenvolvida com React para reproduzir prévias de músicas da API do iTunes. Os usuários podem fazer login com seu nome e pesquisar álbuns de artistas usando a barra de busca. Ao clicar em um álbum, é possível ouvir a prévia de música e favoritá-la. Há um menu no lado esquerdo com as opções "Favoritas" e "Perfil", onde o usuário pode editar suas informações pessoais. A estilização foi feita com CSS e o controle de versões foi feito com Git. O local storage é usado para salvar as informações do perfil do usuário.
+<strong>TrybeTunes</strong> é uma aplicação desenvolvida com React para reproduzir prévias de músicas obtidas da API do iTunes. A estilização foi feita com CSS e o controle de versões foi feito com Git.
+
+Ao entrar na aplicação, o usuário é direcionado para uma página de login, onde pode inserir seu nome. Depois, é redirecionado para a área principal, onde pode pesquisar álbuns de artistas através da barra de busca. Ao clicar no card do álbum, é possível ouvir a prévia da música e favoritá-la caso deseje.
+No menu localizado no lado esquerdo, há a opção de "Favoritas", que exibe todas as prévias de música favoritadas, e a página de perfil, onde o usuário pode editar seu nome, e-mail, adicionar uma descrição e uma foto, que são salvos no local storage.
 
 ## Linguagens e ferramentas:
 - HTML

@@ -1,13 +1,66 @@
-# :construction: README customizado em construção ! :construction:
-<!-- Olá, Tryber!
-Esse é apenas um arquivo inicial para o README do seu projeto no qual você pode customizar e reutilizar todas as vezes que for executar o trybe-publisher.
+<h1 align="center">Boas-vindas ao repositório do TrybeTunes!</h1>
 
-Para deixá-lo com a sua cara, basta alterar o seguinte arquivo da sua máquina: ~/.student-repo-publisher/custom/_NEW_README.md
+<h2 align="center">
+  <a href="https://h3zord.github.io/trybetunes" target="_blank">
+    Aplicação
+  </a>
+</h2>
+<br/>
 
-É essencial que você preencha esse documento por conta própria, ok?
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
-:warning: IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
--->
+## Objetivo
+
+<strong>TrybeTunes</strong> é uma aplicação musical que permite reproduzir músicas. É possível fazer login, pesquisar por bandas ou artistas, visualizar álbuns, ouvir prévias de músicas, adicionar aos favoritos, remover dos favoritos e editar o perfil da pessoa logada.
+
+<h2 align="center">Demonstração</h2>
+<br/>
+
+<div align="center">
+
+
+
+</div>
+
+<br/>
+<br/>
+
+## O que foi desenvolvido?
+
+O projeto <strong>TrybeTunes</strong> é uma aplicação desenvolvida com React para reproduzir prévias de músicas da API do iTunes. Os usuários podem fazer login com seu nome e pesquisar álbuns de artistas usando a barra de busca. Ao clicar em um álbum, é possível ouvir a prévia de música e favoritá-la. Há um menu no lado esquerdo com as opções "Favoritas" e "Perfil", onde o usuário pode editar suas informações pessoais. A estilização foi feita com CSS e o controle de versões foi feito com Git. O local storage é usado para salvar as informações do perfil do usuário.
+
+## Linguagens e ferramentas:
+- HTML
+- CSS
+- Javascript
+- React
+
+## Instalação e execução
+
+### 1 - Clone o repositório:
+```
+git@github.com:h3zord/trybetunes.git
+```
+
+### 2 - Entre no repositório:
+```
+cd trybetunes
+```
+
+### 3 - Instale as dependências:
+Caso utilize o npm
+```
+npm install
+```
+Caso utilize o yarn
+```
+yarn install
+```
+
+### 4 - Inicie o projeto:
+Caso utilize o npm
+```
+npm start
+```
+Caso utilize o yarn
+```
+yarn start
+```

@@ -37,7 +37,7 @@ O projeto <strong>TrybeTunes</strong> é uma aplicação desenvolvida com React 
 
 ### 1 - Clone o repositório:
 ```
-git@github.com:h3zord/trybetunes.git
+git clone git@github.com:h3zord/trybetunes.git
 ```
 
 ### 2 - Entre no repositório:
